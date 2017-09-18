@@ -16,6 +16,11 @@ public class GameManager
 
 	public void Play( StateManager p_stateManager )
 	{
+		if(m_prevStateManager == null)
+		{
+			m_prevStateManager = m_currStateManager;
+		}
+
 		m_currStateManager = p_stateManager;
 		m_stateMachineAnimator.Play( p_stateManager.HashID );
 	}
@@ -32,11 +37,7 @@ public class GameManager
 
 	public void OnStateExit()
 	{
-		if(m_prevStateManager != null)
-		{
-			m_prevStateManager.OnStateExit();
-		}
-
+		m_prevStateManager.OnStateExit();
 		m_prevStateManager = m_currStateManager;
 	}
 }

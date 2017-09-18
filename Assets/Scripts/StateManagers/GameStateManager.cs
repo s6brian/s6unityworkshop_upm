@@ -17,7 +17,12 @@ public class GameStateManager : StateManager
 
 	public override void OnStateUpdate()
 	{
-
+		if(Input.GetKeyDown(KeyCode.Return))
+		{
+			Debug.Log( "Keydown Enter / Return." );
+			LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
+			m_gameManager.Play( loadStateManager );
+		}
 	}
 
 	public override void OnStateExit()
