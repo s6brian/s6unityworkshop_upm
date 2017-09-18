@@ -12,7 +12,14 @@ public class GameStateManager : StateManager
 
 	public override void OnStateEnter()
 	{
+		base.OnStateEnter();
 		Debug.Log( "Game State Enter" );
+	}
+
+	public override void OnStateExit()
+	{
+		base.OnStateExit();
+		Debug.Log( "Game State Exit" );
 	}
 
 	public override void OnStateUpdate()
@@ -23,10 +30,5 @@ public class GameStateManager : StateManager
 			LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
 			m_gameManager.Play( loadStateManager );
 		}
-	}
-
-	public override void OnStateExit()
-	{
-		Debug.Log( "Game State Exit" );
 	}
 }
