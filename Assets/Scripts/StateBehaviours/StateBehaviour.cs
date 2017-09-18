@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GameStateBehaviour : StateMachineBehaviour
+public abstract class StateBehaviour : StateMachineBehaviour
 {
 	protected GameManager m_gameManager;
 	public abstract void SetStateMachine(GameManager p_gameManager);
