@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class PlayerMovementInputController : MonoBehaviour
+public class PlayerInputController : MonoBehaviour
 {
 	[SerializeField] private PlayerMovementManager m_playerMovementManager;
 
