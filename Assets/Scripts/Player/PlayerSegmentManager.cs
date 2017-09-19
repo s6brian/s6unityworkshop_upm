@@ -39,19 +39,18 @@ public class PlayerSegmentManager : MonoBehaviour
 
 	private void Update()
 	{
-
+		
 	}
 
 	private void OnTriggerStateEnter( int p_stateHashID )
 	{
-		m_currentSegmentCount = 0;
-		if( p_stateHashID != Constants.GAME_STATE_HASH_ID )
+		if( p_stateHashID == Constants.GAME_STATE_HASH_ID )
 		{
-			HideAllSegments();
+			ResetPlayer();
 		}
 		else
 		{
-			ResetPlayer();
+			HideAllSegments();	
 		}
 	}
 
@@ -93,6 +92,9 @@ public class PlayerSegmentManager : MonoBehaviour
 		Transform headTransform = m_headGameObject.transform;
 		headTransform.position = Vector3.zero;
 		headTransform.rotation = Quaternion.identity;
+
+		m_currentSegmentCount = 0;
+		HideAllSegments();
 
 		for( int idx = m_tailTransforms.Length-1; idx >= 0; --idx )
 		{
