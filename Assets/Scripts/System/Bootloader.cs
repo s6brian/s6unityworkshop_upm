@@ -11,18 +11,18 @@ public class Bootloader : MonoBehaviour
 	private void Awake ()
 	{
 		m_stateMachineAnimator = this.GetComponent<Animator>();
-		Assert.IsNotNull(m_stateMachineAnimator);
+		Assert.IsNotNull( m_stateMachineAnimator );
 
 		m_gameManager = new GameManager( m_stateMachineAnimator );
-		Assert.IsNotNull(m_gameManager);
+		Assert.IsNotNull( m_gameManager );
 	}
 
 	private void Start ()
 	{
 		StateBehaviour[] stateBehaviours = m_stateMachineAnimator.GetBehaviours<StateBehaviour>();
-		for(int idx = stateBehaviours.Length-1; idx >= 0; --idx)
+		for( int idx = stateBehaviours.Length-1; idx >= 0; --idx )
 		{
-			stateBehaviours[idx].SetStateMachine(m_gameManager);
+			stateBehaviours[idx].SetStateMachine( m_gameManager );
 		}
 
 		LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );

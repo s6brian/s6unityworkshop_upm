@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class LoadStateManager : StateManager
 {
+	private LoadScreenInputController m_inputController;
+
 	public LoadStateManager( GameManager p_gameManager )
 	{
 		m_hashID = Animator.StringToHash( "LoadState" );
 		m_gameManager = p_gameManager;
+		m_inputController = new LoadScreenInputController( p_gameManager );
 	}
 
 	public override void OnStateEnter()
@@ -24,11 +27,6 @@ public class LoadStateManager : StateManager
 
 	public override void OnStateUpdate()
 	{
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			Debug.Log( "Keydown Spacebar." );
-			GameStateManager gameStateManager = new GameStateManager( m_gameManager );
-			m_gameManager.Play( gameStateManager );
-		}
+		m_inputController.ProcessInput();
 	}
 }

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameStateManager : StateManager
 {
+	private GameScreenInputController m_inputController;
+
 	public GameStateManager( GameManager p_gameManager )
 	{
 		m_hashID = Animator.StringToHash( "GameState" );
 		m_gameManager = p_gameManager;
+		m_inputController = new GameScreenInputController( p_gameManager );
 	}
 
 	public override void OnStateEnter()
@@ -24,11 +27,6 @@ public class GameStateManager : StateManager
 
 	public override void OnStateUpdate()
 	{
-		if(Input.GetKeyDown(KeyCode.Return))
-		{
-			Debug.Log( "Keydown Enter / Return." );
-			LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
-			m_gameManager.Play( loadStateManager );
-		}
+		m_inputController.ProcessInput();
 	}
 }
