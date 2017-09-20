@@ -58,19 +58,6 @@ namespace S6
 			}
 		}
 
-		// private void Update()
-		// {
-		// 	Vector3 direction;
-		// 	Vector3 lookAtPosition;
-
-		// 	lookAtPosition = m_headTransform.position;
-
-		// 	for( int idx = 0; idx < m_currentSegmentCount; ++idx )
-		// 	{
-				
-		// 	}
-		// }
-
 		private void OnTriggerStateEnter( int p_stateHashID )
 		{
 			if( p_stateHashID == Constants.GAME_STATE_HASH_ID )
@@ -116,11 +103,6 @@ namespace S6
 			}
 		}
 
-		// public void MoveForward( float p_speed )
-		// {
-
-		// }
-
 		private void AddSegment()
 		{
 
@@ -147,7 +129,7 @@ namespace S6
 			m_headGameObject.SetActive( true );
 			for( int idx = m_tailGameObjects.Length-1; idx >= 0; --idx )
 			{
-				m_tailGameObjects[idx].SetActive( true );
+				m_tailGameObjects[idx].SetActive( false );//true );
 			}
 		}
 
@@ -157,7 +139,7 @@ namespace S6
 
 			for( int idx = m_tailGameObjects.Length-1; idx >= 0; --idx )
 			{
-				m_tailGameObjects[idx].SetActive( true );
+				m_tailGameObjects[idx].SetActive( false );//true );
 			}
 
 			for( int idx = 0; idx < SEGMENT_COUNT; ++idx )
