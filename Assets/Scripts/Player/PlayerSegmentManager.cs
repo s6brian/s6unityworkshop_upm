@@ -14,6 +14,9 @@ namespace S6
 		[SerializeField] private GameObject  m_segmentGameObject;
 		[SerializeField] private Transform[] m_tailTransforms;
 
+		private Transform m_headTransform;
+
+		// for object pooling
 		private GameObject[] m_segmentObjects;
 		private Transform [] m_segmentTransforms;
 		private int m_currentSegmentCount;
@@ -36,13 +39,23 @@ namespace S6
 			Assert.IsNotNull( m_tailTransforms    );
 			Assert.IsNotNull( m_segmentGameObject );
 
+			m_headTransform = m_headGameObject.transform;
+
 			InitSegments();
 		}
 
-		private void Update()
-		{
-			Vector3 direction;
-		}
+		// private void Update()
+		// {
+		// 	Vector3 direction;
+		// 	Vector3 lookAtPosition;
+
+		// 	lookAtPosition = m_headTransform.position;
+
+		// 	for( int idx = 0; idx < m_currentSegmentCount; ++idx )
+		// 	{
+				
+		// 	}
+		// }
 
 		private void OnTriggerStateEnter( int p_stateHashID )
 		{
@@ -69,8 +82,9 @@ namespace S6
 			m_segmentObjects    = new GameObject[ SEGMENT_COUNT ];
 			m_segmentTransforms = new Transform [ SEGMENT_COUNT ];
 
-			GameObject obj;
+			Transform  parent = this.transform;
 			Transform  tfm;
+			GameObject obj;
 
 			for( int idx = 0; idx < SEGMENT_COUNT; ++idx )
 			{
@@ -80,8 +94,7 @@ namespace S6
 				// note:
 				//   this.transform is an expensive function. same with this.gameObject and GetComponent
 				//   if you'll be using them repeatedly, better cache them first.
-				//   for this example, it's acceptable because we're only using it for initialization
-				tfm.SetParent( this.transform );
+				tfm.SetParent( parent );
 				tfm.position   = Vector3.zero;
 
 				m_segmentObjects[idx]    = obj;
@@ -89,13 +102,22 @@ namespace S6
 			}
 		}
 
+		private void InsertSegment()
+		{
+
+		}
+
+		private void RemoveSegment()
+		{
+
+		}
+
 		private void ResetPlayer()
 		{
-			Transform headTransform = m_headGameObject.transform;
-			headTransform.position = Vector3.zero;
-			headTransform.rotation = Quaternion.identity;
+			m_headTransform.position = Vector3.zero;
+			m_headTransform.rotation = Quaternion.identity;
+			m_currentSegmentCount    = 0;
 
-			m_currentSegmentCount = 0;
 			HideAllSegments();
 
 			for( int idx = m_tailTransforms.Length-1; idx >= 0; --idx )
@@ -106,6 +128,8 @@ namespace S6
 			m_headGameObject.SetActive( true );
 			for( int idx = m_tailTransforms.Length-1; idx >= 0; --idx )
 			{
+				// i decided not to cache tail gameobjects because they're only used during reset.
+				// you can always insert a loading screen for cases like this.
 				m_tailTransforms[idx].gameObject.SetActive( true );
 			}
 		}

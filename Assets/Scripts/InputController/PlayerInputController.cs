@@ -7,44 +7,38 @@ namespace S6
 {
 	public class PlayerInputController : MonoBehaviour
 	{
-		[SerializeField] private PlayerMovementManager m_playerMovementManager;
+		private float m_walkSensitivity = 2.5f;
+		private float m_turnSensitivity = 100f;
 
-		private void Awake()
+		public float GetForwardSpeed()
 		{
-			Assert.IsNotNull( m_playerMovementManager );
-		}
+			float speed = 0f;
 
-		private void Update ()
-		{
-			// move forward
 			if( Input.GetKey( KeyCode.W ))
 			{
-				m_playerMovementManager.Speed = 2.5f * Time.deltaTime;
+				speed = m_walkSensitivity * Time.deltaTime;
 			}
 
-			// stop forward movement
-			if( Input.GetKeyUp( KeyCode.W ))
-			{
-				m_playerMovementManager.Speed = 0f;
-			}
+			return speed;
+		}
+
+		public float GetTurnAngle()
+		{
+			float angle = 0f;
 
 			// turn right
 			if( Input.GetKey( KeyCode.D ))
 			{
-				m_playerMovementManager.TurnAngle = -100f * Time.deltaTime;
+				angle = -m_turnSensitivity * Time.deltaTime;
 			}
 
 			// turn left
 			if( Input.GetKey( KeyCode.A ))
 			{
-				m_playerMovementManager.TurnAngle = 100f * Time.deltaTime;
+				angle = m_turnSensitivity * Time.deltaTime;
 			}
 
-			// stop turning
-			if( Input.GetKeyUp( KeyCode.A ) || Input.GetKeyUp( KeyCode.D ))
-			{
-				m_playerMovementManager.TurnAngle = 0f;
-			}
+			return angle;
 		}
 	}
 }

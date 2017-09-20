@@ -272,8 +272,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 334703098}
-  - component: {fileID: 334703100}
   - component: {fileID: 334703099}
+  - component: {fileID: 334703100}
   - component: {fileID: 334703101}
   m_Layer: 0
   m_Name: Player
@@ -310,7 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b82cfa0e18a3e7c45b78ade36dc4f786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerMovementManager: {fileID: 334703100}
 --- !u!114 &334703100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_headTransform: {fileID: 1710993203}
+  m_playerInputController: {fileID: 334703099}
 --- !u!114 &334703101
 MonoBehaviour:
   m_ObjectHideFlags: 0
