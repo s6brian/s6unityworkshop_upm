@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 namespace S6
 {
-	public class PlayerInputController : MonoBehaviour
+	public class PlayerInputController// : MonoBehaviour
 	{
 		private float m_walkSensitivity = 2.5f;
 		private float m_turnSensitivity = 100f;

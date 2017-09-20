@@ -8,7 +8,7 @@ namespace S6
 	public class PlayerMovementManager : MonoBehaviour
 	{
 		[SerializeField] private Transform m_headTransform;
-		[SerializeField] private PlayerInputController m_playerInputController;
+		private PlayerInputController m_playerInputController;
 
 		public float Speed    { get; set; }
 		public float TurnAngle{ get; set; }
@@ -16,7 +16,8 @@ namespace S6
 		private void Awake()
 		{
 			Assert.IsNotNull( m_headTransform  );
-			Assert.IsNotNull( m_playerInputController );
+			// Assert.IsNotNull( m_playerInputController );
+			m_playerInputController = new PlayerInputController();
 		}
 
 		private void Update()
