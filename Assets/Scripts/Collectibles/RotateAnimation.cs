@@ -6,12 +6,12 @@ public class RotateAnimation : MonoBehaviour
 {
 	private Transform m_transform;
 
-	void Awake ()
+	private void Awake ()
 	{
 		m_transform = this.transform;
 	}
 	
-	void Update ()
+	private void Update ()
 	{
 		m_transform.Rotate( Vector3.up,      3f );
 		// m_transform.Rotate( Vector3.right,   3f );

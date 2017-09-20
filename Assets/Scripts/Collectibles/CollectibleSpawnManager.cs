@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectibleSpawnManager : MonoBehaviour {
+public class CollectibleSpawnManager : MonoBehaviour
+{
+	private Transform m_transform;
+	private Vector2   m_v2MinRange;
+	private Vector3   m_v2MaxRange;
 
-	// Use this for initialization
-	void Start () {
-		
+	private void Awake()
+	{
+		m_transform  = this.transform;
+		m_v2MinRange = Camera.main.ViewportToWorldPoint( new Vector2( 0.05f, 0.05f ));
+		m_v2MaxRange = Camera.main.ViewportToWorldPoint( new Vector2( 0.95f, 0.90f ));
+
+		// initially spawn out of screen
+		m_transform.position = new Vector3( Screen.width * 1.5f, 0f, 0f );
+
+		// after n seconds, spawn in random position within screen
+		Invoke( "Respawn", 1.5f );
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void Respawn()
+	{
+		m_transform.position = new Vector3( Random.Range( m_v2MinRange.x, m_v2MaxRange.x ), Random.Range( m_v2MinRange.y, m_v2MaxRange.y ), 0f );
 	}
 }
