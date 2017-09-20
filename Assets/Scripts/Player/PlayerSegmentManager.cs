@@ -112,10 +112,22 @@ namespace S6
 
 		public void AddSegment()
 		{
-			if( m_currentSegmentCount >= SEGMENT_COUNT ){ return; }
+			if( m_currentSegmentCount >= SEGMENT_COUNT )
+			{
+				return;
+			}
+
 			m_segmentObjects[ m_currentSegmentCount ].SetActive( true );
-			m_segments[ m_currentSegmentCount ].SetFollowedTransform( m_headTransform );
-			++m_currentSegmentCount;
+			m_segments[ m_currentSegmentCount ].SetFollowedTransform( m_segmentTransforms[ m_currentSegmentCount - 1 ]);
+
+			Vector3 newPosition  = m_segmentTransforms[ m_currentSegmentCount - 1 ].position;
+			        newPosition -= m_segmentTransforms[ m_currentSegmentCount - 2 ].position;
+					newPosition  = newPosition.normalized;
+					newPosition *= SEGMENT_SPACING;
+					newPosition += m_segmentTransforms[ m_currentSegmentCount - 1 ].position;
+
+			m_segmentTransforms[ m_currentSegmentCount ].position = newPosition;
+			m_currentSegmentCount += 1;
 		}
 
 		public void RemoveSegment()
