@@ -40,5 +40,10 @@ namespace S6
 
 			return angle;
 		}
+
+		public bool OnRetry()
+		{
+			return Input.GetKeyDown( KeyCode.R );
+		}
 	}
 }

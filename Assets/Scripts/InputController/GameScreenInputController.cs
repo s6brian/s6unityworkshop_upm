@@ -15,9 +15,9 @@ namespace S6
 
 		public void ProcessInput()
 		{
-			if(Input.GetKeyDown(KeyCode.Return))
+			// quit (left alt + q)
+			if(Input.GetKey( KeyCode.LeftAlt ) && Input.GetKeyDown(KeyCode.Q))
 			{
-				Debug.Log( "Keydown Enter / Return." );
 				LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
 				m_gameManager.Play( loadStateManager );
 			}

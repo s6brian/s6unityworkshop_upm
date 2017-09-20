@@ -10,11 +10,17 @@ namespace S6
 		private const int   SEGMENT_COUNT   = 20;
 		private const float SEGMENT_SPACING = 0.35f;
 
-		[SerializeField] private GameObject  m_headGameObject;
-		[SerializeField] private GameObject  m_segmentGameObject;
-		[SerializeField] private Transform[] m_tailTransforms;
+		[SerializeField] private GameObject   m_headGameObject;
+		[SerializeField] private GameObject   m_segmentGameObject;
+		[SerializeField] private GameObject[] m_tailGameObjects;
+		
+		// properties
+		public Transform[] TailSegments{ get{ return m_tailTransforms;      }}
+		public Transform[] BodySegments{ get{ return m_segmentTransforms;   }}
+		public int         BodySize    { get{ return m_currentSegmentCount; }}
 
 		private Transform m_headTransform;
+		private Transform[] m_tailTransforms;
 
 		// for object pooling
 		private GameObject[] m_segmentObjects;
@@ -36,12 +42,20 @@ namespace S6
 		private void Awake()
 		{
 			Assert.IsNotNull( m_headGameObject    );
-			Assert.IsNotNull( m_tailTransforms    );
+			Assert.IsNotNull( m_tailGameObjects   );
 			Assert.IsNotNull( m_segmentGameObject );
 
 			m_headTransform = m_headGameObject.transform;
-
 			InitSegments();
+
+			// set tail transform
+			int tailLen = m_tailGameObjects.Length;
+			m_tailTransforms = new Transform[tailLen];
+
+			for( int idx = 0; idx < tailLen; ++idx )
+			{
+				m_tailTransforms[idx] = m_tailGameObjects[idx].transform;
+			}
 		}
 
 		// private void Update()
@@ -102,7 +116,12 @@ namespace S6
 			}
 		}
 
-		private void InsertSegment()
+		// public void MoveForward( float p_speed )
+		// {
+
+		// }
+
+		private void AddSegment()
 		{
 
 		}
@@ -112,7 +131,7 @@ namespace S6
 
 		}
 
-		private void ResetPlayer()
+		public void ResetPlayer()
 		{
 			m_headTransform.position = Vector3.zero;
 			m_headTransform.rotation = Quaternion.identity;
@@ -126,11 +145,9 @@ namespace S6
 			}
 
 			m_headGameObject.SetActive( true );
-			for( int idx = m_tailTransforms.Length-1; idx >= 0; --idx )
+			for( int idx = m_tailGameObjects.Length-1; idx >= 0; --idx )
 			{
-				// i decided not to cache tail gameobjects because they're only used during reset.
-				// you can always insert a loading screen for cases like this.
-				m_tailTransforms[idx].gameObject.SetActive( true );
+				m_tailGameObjects[idx].SetActive( true );
 			}
 		}
 
@@ -138,9 +155,9 @@ namespace S6
 		{
 			m_headGameObject.SetActive( false );
 
-			for( int idx = m_tailTransforms.Length-1; idx >= 0; --idx )
+			for( int idx = m_tailGameObjects.Length-1; idx >= 0; --idx )
 			{
-				m_tailTransforms[idx].gameObject.SetActive( false );
+				m_tailGameObjects[idx].SetActive( true );
 			}
 
 			for( int idx = 0; idx < SEGMENT_COUNT; ++idx )

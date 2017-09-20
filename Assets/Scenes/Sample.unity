@@ -323,9 +323,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_headGameObject: {fileID: 1710993199}
   m_segmentGameObject: {fileID: 373625512}
-  m_tailTransforms:
-  - {fileID: 1180760275}
-  - {fileID: 293969709}
+  m_tailGameObjects:
+  - {fileID: 1180760274}
+  - {fileID: 293969708}
 --- !u!1 &373625512
 GameObject:
   m_ObjectHideFlags: 0
