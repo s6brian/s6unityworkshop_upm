@@ -25,7 +25,9 @@ public class Bootloader : MonoBehaviour
 			stateBehaviours[idx].SetStateMachine( m_gameManager );
 		}
 
-		LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
-		m_gameManager.Play( loadStateManager );
+		// LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
+		// m_gameManager.Play( loadStateManager );
+		GameStateManager gameStateManager = new GameStateManager( m_gameManager );
+		m_gameManager.Play( gameStateManager );
 	}
 }
