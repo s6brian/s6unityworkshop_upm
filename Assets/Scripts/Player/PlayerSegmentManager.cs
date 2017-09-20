@@ -7,24 +7,25 @@ namespace S6
 {
 	public class PlayerSegmentManager : MonoBehaviour
 	{
-		private const int   SEGMENT_COUNT   = 20;
-		private const float SEGMENT_SPACING = 0.35f;
+		private const int   SEGMENT_COUNT     = 30;
+		private const int   MIN_SEGMENT_COUNT = 2; // excluding the head
+		public  const float SEGMENT_SPACING   = 0.35f;
 
 		[SerializeField] private GameObject   m_headGameObject;
 		[SerializeField] private GameObject   m_segmentGameObject;
 		[SerializeField] private GameObject[] m_tailGameObjects;
 		
 		// properties
-		public Transform[] TailSegments{ get{ return m_tailTransforms;      }}
-		public Transform[] BodySegments{ get{ return m_segmentTransforms;   }}
-		public int         BodySize    { get{ return m_currentSegmentCount; }}
+		public int             SegmentCount{ get{ return m_currentSegmentCount; }}
+		public PlayerSegment[] Segments    { get{ return m_segments; }}
 
 		private Transform m_headTransform;
 		private Transform[] m_tailTransforms;
 
 		// for object pooling
-		private GameObject[] m_segmentObjects;
-		private Transform [] m_segmentTransforms;
+		private GameObject   [] m_segmentObjects;
+		private PlayerSegment[] m_segments;
+		private Transform    [] m_segmentTransforms;
 		private int m_currentSegmentCount;
 
 		private void OnEnable()
@@ -82,8 +83,9 @@ namespace S6
 
 		private void InitSegments()
 		{
-			m_segmentObjects    = new GameObject[ SEGMENT_COUNT ];
-			m_segmentTransforms = new Transform [ SEGMENT_COUNT ];
+			m_segmentObjects    = new GameObject   [ SEGMENT_COUNT ];
+			m_segmentTransforms = new Transform    [ SEGMENT_COUNT ];
+			m_segments          = new PlayerSegment[ SEGMENT_COUNT ];
 
 			Transform  parent = this.transform;
 			Transform  tfm;
@@ -100,17 +102,23 @@ namespace S6
 				tfm.SetParent( parent );
 				tfm.position   = Vector3.zero;
 
-				m_segmentObjects[idx]    = obj;
 				m_segmentTransforms[idx] = tfm;
+				m_segmentObjects[idx]    = obj;
+				m_segments[idx]          = obj.GetComponent<PlayerSegment>();
+				
+				obj.SetActive( false );
 			}
 		}
 
-		private void AddSegment()
+		public void AddSegment()
 		{
-
+			if( m_currentSegmentCount >= SEGMENT_COUNT ){ return; }
+			m_segmentObjects[ m_currentSegmentCount ].SetActive( true );
+			m_segments[ m_currentSegmentCount ].SetFollowedTransform( m_headTransform );
+			++m_currentSegmentCount;
 		}
 
-		private void RemoveSegment()
+		public void RemoveSegment()
 		{
 
 		}
@@ -119,30 +127,30 @@ namespace S6
 		{
 			m_headTransform.position = Vector3.zero;
 			m_headTransform.rotation = Quaternion.identity;
-			m_currentSegmentCount    = 0;
+			m_currentSegmentCount    = MIN_SEGMENT_COUNT;
 
 			HideAllSegments();
-
-			for( int idx = m_tailTransforms.Length-1; idx >= 0; --idx )
-			{
-				m_tailTransforms[idx].position = Vector3.down * ( idx + 1 ) * SEGMENT_SPACING;
-			}
-
 			m_headGameObject.SetActive( true );
-			for( int idx = m_tailGameObjects.Length-1; idx >= 0; --idx )
+
+			for( int idx = m_currentSegmentCount-1; idx >= 0; --idx )
 			{
-				m_tailGameObjects[idx].SetActive( false );//true );
+				m_segmentObjects[idx].SetActive( true );
+				m_segmentTransforms[idx].position = Vector3.down * ( idx + 1 ) * SEGMENT_SPACING;
+
+				if( idx == 0 )
+				{
+					m_segments[idx].SetFollowedTransform( m_headTransform );
+				}
+				else
+				{
+					m_segments[idx].SetFollowedTransform( m_segmentTransforms[ idx-1 ]);
+				}
 			}
 		}
 
 		private void HideAllSegments()
 		{
 			m_headGameObject.SetActive( false );
-
-			for( int idx = m_tailGameObjects.Length-1; idx >= 0; --idx )
-			{
-				m_tailGameObjects[idx].SetActive( false );//true );
-			}
 
 			for( int idx = 0; idx < SEGMENT_COUNT; ++idx )
 			{

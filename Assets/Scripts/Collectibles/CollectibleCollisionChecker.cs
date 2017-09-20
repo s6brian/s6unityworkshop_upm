@@ -9,6 +9,7 @@ namespace S6
 	{
 		[SerializeField] private Transform    m_playerTransform;
 		[SerializeField] private ScoreManager m_scoreManager;
+		[SerializeField] private PlayerSegmentManager m_playerSegmentManager;
 
 		private Transform m_transform;
 		private CollectibleSpawnManager m_collectibleSpawner;
@@ -17,6 +18,7 @@ namespace S6
 		{
 			Assert.IsNotNull( m_playerTransform );
 			Assert.IsNotNull( m_scoreManager );
+			Assert.IsNotNull( m_playerSegmentManager );
 
 			m_transform = this.transform;
 			m_collectibleSpawner = this.GetComponent<CollectibleSpawnManager>();
@@ -30,6 +32,7 @@ namespace S6
 			{
 				m_collectibleSpawner.Respawn();
 				m_scoreManager.AddScore( 1 );
+				m_playerSegmentManager.AddSegment();
 			}
 		}
 	}

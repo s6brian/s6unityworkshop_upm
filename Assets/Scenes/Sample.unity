@@ -315,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerTransform: {fileID: 1710993203}
   m_scoreManager: {fileID: 1899614773}
+  m_playerSegmentManager: {fileID: 334703101}
 --- !u!1 &293969708
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +327,7 @@ GameObject:
   - component: {fileID: 293969712}
   - component: {fileID: 293969711}
   - component: {fileID: 293969710}
+  - component: {fileID: 293969713}
   m_Layer: 0
   m_Name: Tail 1
   m_TagString: Untagged
@@ -397,6 +399,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 293969708}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &293969713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 293969708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc9a8cd7b2fb3842afebb3241d3df28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &334703096
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +484,7 @@ GameObject:
   - component: {fileID: 373625516}
   - component: {fileID: 373625515}
   - component: {fileID: 373625514}
+  - component: {fileID: 373625517}
   m_Layer: 0
   m_Name: Segment
   m_TagString: Untagged
@@ -542,6 +556,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 373625512}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &373625517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 373625512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc9a8cd7b2fb3842afebb3241d3df28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1093922230
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +769,7 @@ GameObject:
   - component: {fileID: 1180760278}
   - component: {fileID: 1180760277}
   - component: {fileID: 1180760276}
+  - component: {fileID: 1180760279}
   m_Layer: 0
   m_Name: Tail 0
   m_TagString: Untagged
@@ -815,6 +841,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1180760274}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1180760279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1180760274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc9a8cd7b2fb3842afebb3241d3df28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1296268164
 GameObject:
   m_ObjectHideFlags: 0
