@@ -2,31 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadStateManager : StateManager
+namespace S6
 {
-	private LoadScreenInputController m_inputController;
-
-	public LoadStateManager( GameManager p_gameManager )
+	public class LoadStateManager : StateManager
 	{
-		m_hashID = Animator.StringToHash( "LoadState" );
-		m_gameManager = p_gameManager;
-		m_inputController = new LoadScreenInputController( p_gameManager );
-	}
+		private LoadScreenInputController m_inputController;
 
-	public override void OnStateEnter()
-	{
-		base.OnStateEnter();
-		Debug.Log( "Load State Enter" );
-	}
+		public LoadStateManager( GameManager p_gameManager )
+		{
+			m_hashID = Animator.StringToHash( "LoadState" );
+			m_gameManager = p_gameManager;
+			m_inputController = new LoadScreenInputController( p_gameManager );
+		}
 
-	public override void OnStateExit()
-	{
-		base.OnStateExit();
-		Debug.Log( "Load State Exit" );
-	}
+		public override void OnStateEnter()
+		{
+			base.OnStateEnter();
+			Debug.Log( "Load State Enter" );
+		}
 
-	public override void OnStateUpdate()
-	{
-		m_inputController.ProcessInput();
+		public override void OnStateExit()
+		{
+			base.OnStateExit();
+			Debug.Log( "Load State Exit" );
+		}
+
+		public override void OnStateUpdate()
+		{
+			m_inputController.ProcessInput();
+		}
 	}
 }

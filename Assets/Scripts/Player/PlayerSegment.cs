@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class PlayerSegment : MonoBehaviour
+namespace S6
 {
-	// [SerializeField] private Transform m_lookAtTransform;
-    // public Transform LookAtTransform{ set; }
-
-    private void Awake()
+    public class PlayerSegment : MonoBehaviour
     {
-        // Assert.IsNotNull( m_lookAtTransform );
+        // [SerializeField] private Transform m_lookAtTransform;
+        // public Transform LookAtTransform{ set; }
+
+        private void Awake()
+        {
+            // Assert.IsNotNull( m_lookAtTransform );
+        }
     }
 }

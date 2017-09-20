@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadScreenInputController
+namespace S6
 {
-	private GameManager m_gameManager;
-
-	public LoadScreenInputController( GameManager p_gameManager )
+	public class LoadScreenInputController
 	{
-		m_gameManager = p_gameManager;
-	}
+		private GameManager m_gameManager;
 
-	public void ProcessInput()
-	{
-		if(Input.GetKeyDown(KeyCode.Space))
+		public LoadScreenInputController( GameManager p_gameManager )
 		{
-			Debug.Log( "Keydown Spacebar." );
-			GameStateManager gameStateManager = new GameStateManager( m_gameManager );
-			m_gameManager.Play( gameStateManager );
+			m_gameManager = p_gameManager;
+		}
+
+		public void ProcessInput()
+		{
+			if(Input.GetKeyDown(KeyCode.Space))
+			{
+				Debug.Log( "Keydown Spacebar." );
+				GameStateManager gameStateManager = new GameStateManager( m_gameManager );
+				m_gameManager.Play( gameStateManager );
+			}
 		}
 	}
 }

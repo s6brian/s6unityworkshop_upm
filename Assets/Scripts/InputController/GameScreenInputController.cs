@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScreenInputController
+namespace S6
 {
-	private GameManager m_gameManager;
-
-	public GameScreenInputController( GameManager p_gameManager )
+	public class GameScreenInputController
 	{
-		m_gameManager = p_gameManager;
-	}
+		private GameManager m_gameManager;
 
-	public void ProcessInput()
-	{
-		if(Input.GetKeyDown(KeyCode.Return))
+		public GameScreenInputController( GameManager p_gameManager )
 		{
-			Debug.Log( "Keydown Enter / Return." );
-			LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
-			m_gameManager.Play( loadStateManager );
+			m_gameManager = p_gameManager;
+		}
+
+		public void ProcessInput()
+		{
+			if(Input.GetKeyDown(KeyCode.Return))
+			{
+				Debug.Log( "Keydown Enter / Return." );
+				LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
+				m_gameManager.Play( loadStateManager );
+			}
 		}
 	}
 }

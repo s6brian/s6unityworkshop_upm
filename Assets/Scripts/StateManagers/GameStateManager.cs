@@ -2,31 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateManager : StateManager
+namespace S6
 {
-	private GameScreenInputController m_inputController;
-
-	public GameStateManager( GameManager p_gameManager )
+	public class GameStateManager : StateManager
 	{
-		m_hashID = Animator.StringToHash( "GameState" );
-		m_gameManager = p_gameManager;
-		m_inputController = new GameScreenInputController( p_gameManager );
-	}
+		private GameScreenInputController m_inputController;
 
-	public override void OnStateEnter()
-	{
-		base.OnStateEnter();
-		Debug.Log( "Game State Enter" );
-	}
+		public GameStateManager( GameManager p_gameManager )
+		{
+			m_hashID = Animator.StringToHash( "GameState" );
+			m_gameManager = p_gameManager;
+			m_inputController = new GameScreenInputController( p_gameManager );
+		}
 
-	public override void OnStateExit()
-	{
-		base.OnStateExit();
-		Debug.Log( "Game State Exit" );
-	}
+		public override void OnStateEnter()
+		{
+			base.OnStateEnter();
+			Debug.Log( "Game State Enter" );
+		}
 
-	public override void OnStateUpdate()
-	{
-		m_inputController.ProcessInput();
+		public override void OnStateExit()
+		{
+			base.OnStateExit();
+			Debug.Log( "Game State Exit" );
+		}
+
+		public override void OnStateUpdate()
+		{
+			m_inputController.ProcessInput();
+		}
 	}
 }

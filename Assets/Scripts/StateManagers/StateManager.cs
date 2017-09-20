@@ -2,32 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StateManager
+namespace S6
 {
-	public delegate void StateTrigger( int p_stateHashID );
-	public static event StateTrigger OnTriggerStateEnter;
-	public static event StateTrigger OnTriggerStateExit;
-
-	protected GameManager m_gameManager;
-
-	protected int m_hashID;
-	public int HashID{ get{ return m_hashID; }}
-	
-	public virtual void OnStateEnter()
+	public abstract class StateManager
 	{
-		if( OnTriggerStateEnter != null )
-		{
-			OnTriggerStateEnter( m_hashID );
-		}
-	}
+		public delegate void StateTrigger( int p_stateHashID );
+		public static event StateTrigger OnTriggerStateEnter;
+		public static event StateTrigger OnTriggerStateExit;
 
-	public virtual void OnStateExit()
-	{
-		if( OnTriggerStateExit != null )
-		{
-			OnTriggerStateExit( m_hashID );
-		}
-	}
+		protected GameManager m_gameManager;
 
-	public virtual void OnStateUpdate(){}
+		protected int m_hashID;
+		public int HashID{ get{ return m_hashID; }}
+		
+		public virtual void OnStateEnter()
+		{
+			if( OnTriggerStateEnter != null )
+			{
+				OnTriggerStateEnter( m_hashID );
+			}
+		}
+
+		public virtual void OnStateExit()
+		{
+			if( OnTriggerStateExit != null )
+			{
+				OnTriggerStateExit( m_hashID );
+			}
+		}
+
+		public virtual void OnStateUpdate(){}
+	}
 }

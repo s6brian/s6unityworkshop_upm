@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadStateBehaviour : StateBehaviour
+namespace S6
 {
-    public override void SetStateMachine(GameManager p_gameManager)
+    public class LoadStateBehaviour : StateBehaviour
     {
-        m_gameManager = p_gameManager;
-    }
+        public override void SetStateMachine(GameManager p_gameManager)
+        {
+            m_gameManager = p_gameManager;
+        }
 
-    override public void OnStateEnter( Animator p_animator, AnimatorStateInfo p_stateInfo, int p_layerIndex )
-    {
-        m_gameManager.OnStateEnter();
-    }
+        override public void OnStateEnter( Animator p_animator, AnimatorStateInfo p_stateInfo, int p_layerIndex )
+        {
+            m_gameManager.OnStateEnter();
+        }
 
-    override public void OnStateExit( Animator p_animator, AnimatorStateInfo p_stateInfo, int p_layerIndex )
-    {
-        m_gameManager.OnStateExit();
-    }
+        override public void OnStateExit( Animator p_animator, AnimatorStateInfo p_stateInfo, int p_layerIndex )
+        {
+            m_gameManager.OnStateExit();
+        }
 
-    override public void OnStateUpdate( Animator p_animator, AnimatorStateInfo p_stateInfo, int p_layerIndex )
-    {
-        m_gameManager.OnStateUpdate();
+        override public void OnStateUpdate( Animator p_animator, AnimatorStateInfo p_stateInfo, int p_layerIndex )
+        {
+            m_gameManager.OnStateUpdate();
+        }
     }
 }

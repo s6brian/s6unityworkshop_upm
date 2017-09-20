@@ -2,42 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager
+namespace S6
 {
-	private StateManager m_currStateManager;
-	private StateManager m_prevStateManager;
-	private Animator     m_stateMachineAnimator;
-	private int 		 m_nextStateHashID;
-
-	public GameManager( Animator p_stateMachineAnimator )
+	public class GameManager
 	{
-		m_stateMachineAnimator = p_stateMachineAnimator;
-	}
+		private StateManager m_currStateManager;
+		private StateManager m_prevStateManager;
+		private Animator     m_stateMachineAnimator;
+		private int 		 m_nextStateHashID;
 
-	public void Play( StateManager p_stateManager )
-	{
-		if(m_prevStateManager == null)
+		public GameManager( Animator p_stateMachineAnimator )
 		{
-			m_prevStateManager = m_currStateManager;
+			m_stateMachineAnimator = p_stateMachineAnimator;
 		}
 
-		m_currStateManager = p_stateManager;
-		m_stateMachineAnimator.Play( p_stateManager.HashID );
-	}
+		public void Play( StateManager p_stateManager )
+		{
+			if(m_prevStateManager == null)
+			{
+				m_prevStateManager = m_currStateManager;
+			}
 
-	public void OnStateEnter()
-	{
-		m_currStateManager.OnStateEnter();
-	}
+			m_currStateManager = p_stateManager;
+			m_stateMachineAnimator.Play( p_stateManager.HashID );
+		}
 
-	public void OnStateUpdate()
-	{
-		m_currStateManager.OnStateUpdate();
-	}
+		public void OnStateEnter()
+		{
+			m_currStateManager.OnStateEnter();
+		}
 
-	public void OnStateExit()
-	{
-		m_prevStateManager.OnStateExit();
-		m_prevStateManager = m_currStateManager;
+		public void OnStateUpdate()
+		{
+			m_currStateManager.OnStateUpdate();
+		}
+
+		public void OnStateExit()
+		{
+			m_prevStateManager.OnStateExit();
+			m_prevStateManager = m_currStateManager;
+		}
 	}
 }
