@@ -29,14 +29,16 @@ namespace S6
 
 		private void OnEnable()
 		{
-			StateManager.OnTriggerStateEnter += OnTriggerStateEnter;
-			StateManager.OnTriggerStateExit  += OnTriggerStateExit;
+			StateManager.OnTriggerStateEnter         += OnTriggerStateEnter;
+			StateManager.OnTriggerStateExit          += OnTriggerStateExit;
+			GameScreenInputController.OnTriggerRetry += ResetPlayer;
 		}
 
 		private void OnDisable()
 		{
-			StateManager.OnTriggerStateEnter -= OnTriggerStateEnter;
-			StateManager.OnTriggerStateExit  -= OnTriggerStateExit;
+			StateManager.OnTriggerStateEnter         -= OnTriggerStateEnter;
+			StateManager.OnTriggerStateExit          -= OnTriggerStateExit;
+			GameScreenInputController.OnTriggerRetry -= ResetPlayer;
 		}
 
 		private void Awake()

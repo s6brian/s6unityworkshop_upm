@@ -6,6 +6,9 @@ namespace S6
 {
 	public class GameScreenInputController
 	{
+		public delegate void KeyDownTrigger();
+		public static event KeyDownTrigger OnTriggerRetry;
+
 		private GameManager m_gameManager;
 
 		public GameScreenInputController( GameManager p_gameManager )
@@ -20,6 +23,12 @@ namespace S6
 			{
 				LoadStateManager loadStateManager = new LoadStateManager( m_gameManager );
 				m_gameManager.Play( loadStateManager );
+			}
+
+			// retry
+			if( Input.GetKeyDown( KeyCode.R ) && OnTriggerRetry != null)
+			{
+				OnTriggerRetry();
 			}
 		}
 	}

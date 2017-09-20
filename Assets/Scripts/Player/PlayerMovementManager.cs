@@ -30,10 +30,10 @@ namespace S6
 
 		private void Update()
 		{
-			if( m_playerInputController.OnRetry())
-			{
-				m_playerSegmentManager.ResetPlayer();
-			}
+			// if( m_playerInputController.OnRetry())
+			// {
+			// 	m_playerSegmentManager.ResetPlayer();
+			// }
 
 			// move on xy-plane
 			m_headTransform.Translate( 0f, m_playerInputController.GetForwardSpeed(), 0f );

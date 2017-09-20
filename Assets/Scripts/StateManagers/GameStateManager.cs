@@ -18,13 +18,13 @@ namespace S6
 		public override void OnStateEnter()
 		{
 			base.OnStateEnter();
-			Debug.Log( "Game State Enter" );
+			// Debug.Log( "Game State Enter" );
 		}
 
 		public override void OnStateExit()
 		{
 			base.OnStateExit();
-			Debug.Log( "Game State Exit" );
+			// Debug.Log( "Game State Exit" );
 		}
 
 		public override void OnStateUpdate()
