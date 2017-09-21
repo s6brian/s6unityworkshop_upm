@@ -37,21 +37,6 @@ namespace S6
 			{
 				m_playerSegmentManager.Segments[ idx ].Move( speed );
 			}
-
-			// update body
-			// Vector3 lookAtDirection = ( m_mouthTransform.position - m_headTransform.position ).normalized;
-			// Vector3 lookAtPosition  = m_headTransform.position;
-
-			// for( int idx = 0; idx < m_playerSegmentManager.BodySize; ++idx )
-			// {
-			// 	//direction = lookAtPosition - m_playerSegmentManager.BodySegments[idx].position;
-			// }
-
-			// // update tail
-			// for( int idx = 0; idx < m_playerSegmentManager.TailSegments.Length; ++idx )
-			// {
-				
-			// }
 		}
 	}
 }
