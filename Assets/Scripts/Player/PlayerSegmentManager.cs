@@ -13,14 +13,12 @@ namespace S6
 
 		[SerializeField] private GameObject   m_headGameObject;
 		[SerializeField] private GameObject   m_segmentGameObject;
-		[SerializeField] private GameObject[] m_tailGameObjects;
 		
 		// properties
 		public int             SegmentCount{ get{ return m_currentSegmentCount; }}
 		public PlayerSegment[] Segments    { get{ return m_segments; }}
 
 		private Transform m_headTransform;
-		private Transform[] m_tailTransforms;
 
 		// for object pooling
 		private GameObject   [] m_segmentObjects;
@@ -45,20 +43,10 @@ namespace S6
 		private void Awake()
 		{
 			Assert.IsNotNull( m_headGameObject    );
-			Assert.IsNotNull( m_tailGameObjects   );
 			Assert.IsNotNull( m_segmentGameObject );
 
 			m_headTransform = m_headGameObject.transform;
 			InitSegments();
-
-			// set tail transform
-			int tailLen = m_tailGameObjects.Length;
-			m_tailTransforms = new Transform[tailLen];
-
-			for( int idx = 0; idx < tailLen; ++idx )
-			{
-				m_tailTransforms[idx] = m_tailGameObjects[idx].transform;
-			}
 		}
 
 		private void OnTriggerStateEnter( int p_stateHashID )
